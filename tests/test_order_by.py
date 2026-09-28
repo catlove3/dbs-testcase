@@ -45,7 +45,7 @@ class OrderByTests(unittest.TestCase):
         )
         point = next(
             point for point in case.test_points
-            if point.sql == "SELECT * FROM NATION ORDER BY N_REGIONKEY;"
+            if point.sql == "SELECT * FROM NATION ORDER BY N_REGIONKEY DESC;"
         )
         expected = point.ans
         lines = [",".join(f"NATION.{header}" for header in expected.headers)]
