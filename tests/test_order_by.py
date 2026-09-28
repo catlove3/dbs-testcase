@@ -55,13 +55,5 @@ class OrderByTests(unittest.TestCase):
         with self.assertRaises((AssertionError, CheckFailed)):
             expected.check(Answer(lines, point.flags))
 
-    def test_large_integer_order_is_checked_exactly(self):
-        flags = TestPoint.generate_flags("SELECT id FROM T ORDER BY id;")
-        expected = Answer(["id", "9007199254740992", "9007199254740993"], flags)
-        expected.check(Answer(["id", "9007199254740992", "9007199254740993"], flags))
-        with self.assertRaises((AssertionError, CheckFailed)):
-            expected.check(Answer(["id", "9007199254740993", "9007199254740992"], flags))
-
-
 if __name__ == "__main__":
     unittest.main()

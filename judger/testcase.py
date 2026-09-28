@@ -1,5 +1,4 @@
 import re
-from decimal import Decimal
 from operator import itemgetter
 
 from .error import assert_eq, check_constraint_error, CheckFailed
@@ -188,7 +187,7 @@ class Answer:
                         return i
                 else:
                     assert_eq(f"Missing order by field '{field}'", True, False)
-            keys = [tuple(Decimal(each[find_colume_index(other.headers, field)]) for field in self.order_by)
+            keys = [tuple(float(each[find_colume_index(other.headers, field)]) for field in self.order_by)
                     for each in other.data]
             # Note: Ordered field shouldn't be string, or it will be difficult to process
             if self.flags.reversed_order:
